@@ -45,6 +45,10 @@ def test_linkedlist_to_string_():
     new_list.insert("A")
     assert new_list.to_string() == "{ A } -> { B } -> { C } -> None"
 
+#####################################
+#############  Class 06 #############
+#####################################
+
 def test_linkedlist_append():
     new_list = LinkedList()
     new_list.insert("2")
@@ -115,3 +119,53 @@ def test_linkedlist_insert_after():
     new_list4.insert("1")
     new_list4.insert_after("4", "5")
     assert new_list4.to_string() == "{ 1 } -> { 3 } -> { 2 } -> None"
+
+#####################################
+#############  Class 07 #############
+#####################################
+
+def test_linkedlist_kthFromEnd_zero():
+    new_list = LinkedList()
+    new_list.insert("1")
+    new_list.insert("3")
+    new_list.insert("8")
+    new_list.insert("2")
+    assert new_list.kthFromEnd(0) == "2"
+
+def test_linkedlist_kthFromEnd_two():
+    new_list2 = LinkedList()
+    new_list2.insert("1")
+    new_list2.insert("3")
+    new_list2.insert("8")
+    new_list2.insert("2")
+    assert new_list2.kthFromEnd(2) == "3"
+
+def test_linkedlist_kthFromEnd_three():
+    new_list3 = LinkedList()
+    new_list3.insert("1")
+    new_list3.insert("3")
+    new_list3.insert("8")
+    new_list3.insert("2")
+    assert new_list3.kthFromEnd(3) == "1"
+
+def test_linkedlist_kthFromEnd_negative():
+    new_list3 = LinkedList()
+    new_list3.insert("1")
+    new_list3.insert("3")
+    new_list3.insert("8")
+    new_list3.insert("2")
+    assert new_list3.kthFromEnd(-1) == "1"
+
+def test_linkedlist_kthFromEnd_six():
+    new_list4 = LinkedList()
+    new_list4.insert("1")
+    new_list4.insert("3")
+    new_list4.insert("8")
+    new_list4.insert("2")
+    assert new_list4.kthFromEnd(6) == "3"
+
+def test_linkedlist_kthFromEnd_size_of_one():
+    new_list5 = LinkedList()
+    new_list5.insert("2")
+    assert new_list5.kthFromEnd(0) == "2"
+
