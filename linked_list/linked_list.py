@@ -59,7 +59,6 @@ class LinkedList:
         while current is not None:
             if current.next.value == target:
                 new_node = Node(new_value,current.next)
-                new_node.next = current.next
                 current.next = new_node
                 current = current.next
             elif self.head.value == target:
@@ -84,8 +83,25 @@ class LinkedList:
             #     self.insert(new_value)
             # else:
             #     self.to_string() 
+    def kthFromEnd(self,k):
+        try:
+            temp_lst = []
+            current = self.head
+            while current != None:
+                temp_lst.append(current.value)
+                current = current.next
+            # print(temp_lst)
+            if k <= len(temp_lst):
+                return temp_lst[k]
+            else:
+                raise ValueError
+        except ValueError as ve:
+            print(ve)
+            raise ValueError(f'Linked list has fewer than {k} elements.')
             
 
+
+            
 
 if __name__ == "__main__":
     pass
@@ -124,3 +140,9 @@ if __name__ == "__main__":
     # new_list2.insert("1")
     # new_list2.insert_before("2", "5")
     # assert new_list2.to_string() == "{ 1 } -> { 3 } -> { 2 } -> { 5 } -> None"
+    new_list = LinkedList()
+    new_list.insert("1")
+    new_list.insert("3")
+    new_list.insert("8")
+    new_list.insert("2")
+    new_list.kthFromEnd(0)
