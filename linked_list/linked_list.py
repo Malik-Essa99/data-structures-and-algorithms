@@ -4,6 +4,9 @@ class Node:
         self.next = _next
 
 
+############# LinkedList #############
+
+
 class LinkedList:
     def __init__(self, head=None):
         self.head = head
@@ -41,7 +44,7 @@ class LinkedList:
         new_node = Node(value)
         new_node.next = self.head
         self.head = new_node
-    
+
     def append(self, value):
         if self.head is None:
             self.insert(value)
@@ -54,20 +57,20 @@ class LinkedList:
                 new_node.next = None
             current = current.next
 
-    def insert_before(self,target,new_value):
+    def insert_before(self, target, new_value):
         current = self.head
         while current is not None:
             if current.next.value == target:
-                new_node = Node(new_value,current.next)
+                new_node = Node(new_value, current.next)
                 current.next = new_node
                 current = current.next
             elif self.head.value == target:
                 self.insert(new_value)
             else:
-                self.to_string() 
+                self.to_string()
             return
-        
-    def insert_after(self,target,new_value):
+
+    def insert_after(self, target, new_value):
         current = self.head
         while current is not None:
             if current.value == target and current.next is not None:
@@ -82,8 +85,9 @@ class LinkedList:
             # elif self.head.value == target:
             #     self.insert(new_value)
             # else:
-            #     self.to_string() 
-    def kthFromEnd(self,k):
+            #     self.to_string()
+
+    def kthFromEnd(self, k):
         try:
             temp_lst = []
             current = self.head
@@ -97,11 +101,106 @@ class LinkedList:
                 raise ValueError
         except ValueError as ve:
             print(ve)
-            raise ValueError(f'Linked list has fewer than {k} elements.')
-            
+            raise ValueError(f"Linked list has fewer than {k} elements.")
 
 
-            
+############# Stack #############
+
+
+class Stack:
+    def __init__(self, top=None):
+        self.top = top
+
+    def push(self, value):
+        new_node = Node(value)
+        new_node.next = self.top
+        self.top = new_node
+
+    def pop(self):
+        try:
+            if self.top is not None:
+                temp = self.top
+                self.top = temp.next
+                temp.next = None
+                return temp.value
+            else:
+                raise ValueError
+
+        except ValueError as ve:
+            print(ve)
+            raise ValueError("Stack is empty")
+
+    def peek(self):
+        try:
+            if self.top is not None:
+                return str(self.top.value)
+            else:
+                raise ValueError
+
+        except ValueError as ve:
+            print(ve)
+            raise ValueError(f"Stack is empty")
+
+    def is_empty(self):
+        if self.top == None:
+            return True
+        else:
+            return False
+
+
+############# Queues #############
+
+
+class Queue:
+    def __init__(self,back=None ,front=None ):
+        self.back = back
+        self.front = front
+
+    def enqueue(self,value):
+        new_node = Node(value)
+
+        if self.front == None:
+            self.back = new_node
+            self.front = new_node
+            self.back.next = None
+            self.front.next = None
+        else:
+            self.back.next = new_node
+            self.back = new_node
+
+    def dequeue(self):
+        
+        try:
+            if self.front is not None:
+                temp = self.front
+                self.front = temp.next
+                temp.next = None
+                return temp.value
+            else:
+                raise ValueError
+
+        except ValueError as ve:
+            print(ve)
+            raise ValueError("Queue is empty")
+        
+    def peek(self):
+        try:
+            if self.front is not None:
+                return str(self.front.value)
+            else:
+                raise ValueError
+
+        except ValueError as ve:
+            print(ve)
+            raise ValueError(f"Queue is empty")  
+          
+    def is_empty(self):
+        if self.front == None:
+            return True
+        else:
+            return False
+        
+
 
 if __name__ == "__main__":
     pass
@@ -140,9 +239,34 @@ if __name__ == "__main__":
     # new_list2.insert("1")
     # new_list2.insert_before("2", "5")
     # assert new_list2.to_string() == "{ 1 } -> { 3 } -> { 2 } -> { 5 } -> None"
-    new_list = LinkedList()
-    new_list.insert("1")
-    new_list.insert("3")
-    new_list.insert("8")
-    new_list.insert("2")
-    new_list.kthFromEnd(0)
+    # new_list = LinkedList()
+    # new_list.insert("1")
+    # new_list.insert("3")
+    # new_list.insert("8")
+    # new_list.insert("2")
+    # new_list.kthFromEnd(0)
+    
+    # new_node = Queue()
+    # new_node.enqueue("Hello")
+    # print(new_node.front.value)
+    # print(new_node.back.value)
+    # new_node.enqueue("World")
+    # print("-----------")
+    # print(new_node.front.value)
+    # print(new_node.back.value)
+    # print("-----------")
+    # new_node.enqueue("Nice")
+    # print(new_node.front.value)
+    # print(new_node.back.value)
+
+    new_node = Queue()
+    new_node.enqueue("Hello")
+    print(new_node.front.next)
+    print(new_node.back.next)
+    new_node.enqueue("World")
+    print(new_node.front.next.next)
+    print(new_node.back.next)
+    new_node.enqueue("Nice")
+    print(new_node.front.next.value)
+    print(new_node.back.next)
+
