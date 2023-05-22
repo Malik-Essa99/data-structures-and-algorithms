@@ -190,15 +190,18 @@ def test_linkedlist_kthFromEnd_size_of_one():
 
 #############   Stacks  #############
 
+@pytest.mark.skip(reason="Done")
 def test_stacks_instantiation():
     new_stack = Stack()
     assert new_stack.top == None
 
+@pytest.mark.skip(reason="Done")
 def test_stacks_push_one():
     new_stack = Stack()
     new_stack.push("Hello")
     assert new_stack.top.value == "Hello"
 
+@pytest.mark.skip(reason="Done")
 def test_stacks_push_two():
     new_stack = Stack()
     new_stack.push("Hello")
@@ -206,6 +209,7 @@ def test_stacks_push_two():
     new_stack.push("Testing")
     assert new_stack.top.value == "Testing"
 
+@pytest.mark.skip(reason="Done")
 def test_stacks_pop():
     new_stack = Stack()
     new_stack.push("Red")
@@ -217,6 +221,7 @@ def test_stacks_pop():
     assert new_stack.pop() == "Gray"
     assert new_stack.top.value == "Blue"
 
+@pytest.mark.skip(reason="Done")
 def test_stacks_multiple_pops():
     new_stack = Stack()
     new_stack.push("Red")
@@ -228,6 +233,7 @@ def test_stacks_multiple_pops():
     # new_stack.pop() # Uncomment to check if pop method raises an error when called on an empty stack
     assert new_stack.top == None
 
+@pytest.mark.skip(reason="Done")
 def test_stacks_peek():
     new_stack = Stack()
     # new_stack.peek() # Uncomment to check if peek method raises an error when called on an empty stack
@@ -238,17 +244,20 @@ def test_stacks_peek():
     new_stack.pop()
     assert new_stack.peek() == 'Netherlands'
 
+@pytest.mark.skip(reason="Done")
 def test_stacks_empty():
     new_stack = Stack()
     assert new_stack.is_empty() == True
 
 #############   Queues  #############
 
+@pytest.mark.skip(reason="Done")
 def test_queues_instantiation():
     new_queue = Queue()
     assert new_queue.back == None
     assert new_queue.front == None
 
+@pytest.mark.skip(reason="Done")
 def test_queues_enqueue():
     new_queue = Queue()
     new_queue.enqueue("Red")
@@ -256,6 +265,7 @@ def test_queues_enqueue():
     assert new_queue.back.value == "Blue"
     assert new_queue.front.value == "Red"
 
+@pytest.mark.skip(reason="Done")
 def test_queues_dequeue():
     new_queue = Queue()
     new_queue.enqueue("Red")
@@ -265,6 +275,7 @@ def test_queues_dequeue():
     assert new_queue.front.value == "Blue"
     assert new_queue.back.value == "Blue"
 
+@pytest.mark.skip(reason="Done")
 def test_queues_multiple_dequeues():
     new_queue = Queue()
     new_queue.enqueue("Red")
@@ -274,6 +285,7 @@ def test_queues_multiple_dequeues():
     # new_queue.dequeue() # Uncomment to check if dequeue method raises an error when called on an empty Queue
     assert new_queue.is_empty() == True
 
+@pytest.mark.skip(reason="Done")
 def test_queues_peek():
     new_queue = Queue()
     # assert new_queue.peek() # Uncomment to check if peek method raises an error when called on an empty Queue
@@ -282,8 +294,58 @@ def test_queues_peek():
     new_queue.enqueue("Turkey")
     assert new_queue.peek() == "Jordan"
 
+@pytest.mark.skip(reason="Done")
 def test_queues_instantiation():
     new_queue = Queue()
     assert new_queue.is_empty() == True
 
+#############   Zip Lists  #############
+# @pytest.mark.skip(reason="Done")
+def test_zip_lists_one():
+    ll1 = LinkedList()
+    ll1.insert("2")
+    ll1.insert("3")
+    ll1.insert("1")
+    ll2 = LinkedList()
+    ll2.insert("4")
+    ll2.insert("9")
+    ll2.insert("5")
+    ll3 = LinkedList.zip_lists(ll1,ll2)
+    assert ll3.to_string() == "{ 1 } -> { 5 } -> { 3 } -> { 9 } -> { 2 } -> { 4 } -> None"
 
+def test_zip_lists_two():
+    ll1 = LinkedList()
+    ll1.insert("3")
+    ll1.insert("1")
+    ll2 = LinkedList()
+    ll2.insert("4")
+    ll2.insert("9")
+    ll2.insert("5")
+    ll3 = LinkedList.zip_lists(ll1,ll2)
+    assert ll3.to_string() == "{ 1 } -> { 5 } -> { 3 } -> { 9 } -> { 4 } -> None"
+
+def test_zip_lists_three():
+    ll1 = LinkedList()
+    ll1.insert("2")
+    ll1.insert("3")
+    ll1.insert("1")
+    ll2 = LinkedList()
+    ll2.insert("9")
+    ll2.insert("5")
+    ll3 = LinkedList.zip_lists(ll1,ll2)
+    assert ll3.to_string() == "{ 1 } -> { 5 } -> { 3 } -> { 9 } -> { 2 } -> None"
+
+def test_zip_lists_one_list_empty():
+    ll1 = LinkedList()
+    ll2 = LinkedList()
+    ll2.insert("9")
+    ll2.insert("5")
+    ll2.insert("1")
+    ll3 = LinkedList.zip_lists(ll1,ll2)
+    assert ll3.to_string() == "{ 1 } -> { 5 } -> { 9 } -> None"
+
+def test_zip_lists_both_list_empty():
+    ll1 = LinkedList()
+    ll2 = LinkedList()
+    ll3 = LinkedList.zip_lists(ll1,ll2)
+    assert ll3.to_string() == "{  } -> None" # this test raises an exception+

@@ -102,8 +102,27 @@ class LinkedList:
         except ValueError as ve:
             print(ve)
             raise ValueError(f"Linked list has fewer than {k} elements.")
-
-
+        
+    @staticmethod
+    def zip_lists(ll_1,ll_2):
+        try:
+            if ll_1.head == None and ll_2.head == None:
+                raise ValueError
+            ll_1_current = ll_1.head
+            ll_2_current = ll_2.head
+            new_ll = LinkedList()
+            while ll_1_current or ll_2_current:
+                if ll_1_current is not None:
+                    new_ll.append(ll_1_current.value)
+                    ll_1_current = ll_1_current.next
+                if ll_2_current is not None:
+                    new_ll.append(ll_2_current.value)
+                    ll_2_current = ll_2_current.next
+            return new_ll
+        except ValueError as ve:
+            print(ve)
+            raise ValueError("Both Lists are empty")
+            
 ############# Stack #############
 
 
@@ -245,7 +264,6 @@ if __name__ == "__main__":
     # new_list.insert("8")
     # new_list.insert("2")
     # new_list.kthFromEnd(0)
-    
     # new_node = Queue()
     # new_node.enqueue("Hello")
     # print(new_node.front.value)
@@ -258,15 +276,25 @@ if __name__ == "__main__":
     # new_node.enqueue("Nice")
     # print(new_node.front.value)
     # print(new_node.back.value)
+    # new_node = Queue()
+    # new_node.enqueue("Hello")
+    # print(new_node.front.next)
+    # print(new_node.back.next)
+    # new_node.enqueue("World")
+    # print(new_node.front.next.next)
+    # print(new_node.back.next)
+    # new_node.enqueue("Nice")
+    # print(new_node.front.next.value)
+    # print(new_node.back.next)
 
-    new_node = Queue()
-    new_node.enqueue("Hello")
-    print(new_node.front.next)
-    print(new_node.back.next)
-    new_node.enqueue("World")
-    print(new_node.front.next.next)
-    print(new_node.back.next)
-    new_node.enqueue("Nice")
-    print(new_node.front.next.value)
-    print(new_node.back.next)
-
+    ll1 = LinkedList()
+    ll1.insert("2")
+    ll1.insert("3")
+    ll1.insert("1")
+    ll2 = LinkedList()
+    # ll2.insert("4")
+    ll2.insert("9")
+    ll2.insert("5")
+    # print(ll2.to_string())
+    ll3 = LinkedList.zip_lists(ll1,ll2)
+    print(ll3.to_string())
