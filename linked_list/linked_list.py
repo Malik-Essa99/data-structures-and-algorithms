@@ -82,11 +82,6 @@ class LinkedList:
                 self.append(new_value)
             current = current.next
 
-            # elif self.head.value == target:
-            #     self.insert(new_value)
-            # else:
-            #     self.to_string()
-
     def kthFromEnd(self, k):
         try:
             temp_lst = []
@@ -94,7 +89,6 @@ class LinkedList:
             while current != None:
                 temp_lst.append(current.value)
                 current = current.next
-            # print(temp_lst)
             if k <= len(temp_lst):
                 return temp_lst[k]
             else:
@@ -103,6 +97,29 @@ class LinkedList:
             print(ve)
             raise ValueError(f"Linked list has fewer than {k} elements.")
         
+    ######################################################
+    ##################      Class09     ##################
+    ######################################################
+
+    
+    @staticmethod
+    def reverse_linkedlist(ll_1):
+        current = ll_1.head
+        temp_list = []
+        new_list = LinkedList()
+
+        while current:
+            temp_list.append(current.value)  # Use append instead of assigning by index
+            current = current.next
+
+        for i in temp_list:
+            new_node = Node(i)
+            new_node.next = new_list.head
+            new_list.head = new_node
+
+        return new_list
+
+    
     @staticmethod
     def zip_lists(ll_1,ll_2):
         try:
@@ -123,106 +140,15 @@ class LinkedList:
             print(ve)
             raise ValueError("Both Lists are empty")
             
-############# Stack #############
 
-
-class Stack:
-    def __init__(self, top=None):
-        self.top = top
-
-    def push(self, value):
-        new_node = Node(value)
-        new_node.next = self.top
-        self.top = new_node
-
-    def pop(self):
-        try:
-            if self.top is not None:
-                temp = self.top
-                self.top = temp.next
-                temp.next = None
-                return temp.value
-            else:
-                raise ValueError
-
-        except ValueError as ve:
-            print(ve)
-            raise ValueError("Stack is empty")
-
-    def peek(self):
-        try:
-            if self.top is not None:
-                return str(self.top.value)
-            else:
-                raise ValueError
-
-        except ValueError as ve:
-            print(ve)
-            raise ValueError(f"Stack is empty")
-
-    def is_empty(self):
-        if self.top == None:
-            return True
-        else:
-            return False
-
-
-############# Queues #############
-
-
-class Queue:
-    def __init__(self,back=None ,front=None ):
-        self.back = back
-        self.front = front
-
-    def enqueue(self,value):
-        new_node = Node(value)
-
-        if self.front == None:
-            self.back = new_node
-            self.front = new_node
-            self.back.next = None
-            self.front.next = None
-        else:
-            self.back.next = new_node
-            self.back = new_node
-
-    def dequeue(self):
-        
-        try:
-            if self.front is not None:
-                temp = self.front
-                self.front = temp.next
-                temp.next = None
-                return temp.value
-            else:
-                raise ValueError
-
-        except ValueError as ve:
-            print(ve)
-            raise ValueError("Queue is empty")
-        
-    def peek(self):
-        try:
-            if self.front is not None:
-                return str(self.front.value)
-            else:
-                raise ValueError
-
-        except ValueError as ve:
-            print(ve)
-            raise ValueError(f"Queue is empty")  
-          
-    def is_empty(self):
-        if self.front == None:
-            return True
-        else:
-            return False
-        
-
-
-if __name__ == "__main__":
-    pass
+    # ll = LinkedList()
+    # ll.insert("1")
+    # ll.insert("2")
+    # ll.insert("3")
+    # ll.insert("4")
+    # print(ll.to_string())
+    # new_lst = LinkedList.reverse_linkedlist(ll)
+    # print(new_lst.to_string())
     # node_a= Node("A")
     # node_b= Node("B", node_a)
     # print (node_d.value)
@@ -286,15 +212,16 @@ if __name__ == "__main__":
     # new_node.enqueue("Nice")
     # print(new_node.front.next.value)
     # print(new_node.back.next)
+    # ll1 = LinkedList()
+    # ll1.insert("2")
+    # ll1.insert("3")
+    # ll1.insert("1")
+    # ll2 = LinkedList()
+    # # ll2.insert("4")
+    # ll2.insert("9")
+    # ll2.insert("5")
+    # # print(ll2.to_string())
+    # ll3 = LinkedList.zip_lists(ll1,ll2)
+    # print(ll3.to_string())
 
-    ll1 = LinkedList()
-    ll1.insert("2")
-    ll1.insert("3")
-    ll1.insert("1")
-    ll2 = LinkedList()
-    # ll2.insert("4")
-    ll2.insert("9")
-    ll2.insert("5")
-    # print(ll2.to_string())
-    ll3 = LinkedList.zip_lists(ll1,ll2)
-    print(ll3.to_string())
+    
