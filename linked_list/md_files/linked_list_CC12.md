@@ -1,0 +1,12 @@
+## Animal Shelter.
+### project: Animal Shelter.
+### Author: Malik Al Hudrub
+## How to initialize/run your application:
+### python linked_list/stacks_and_queues.py
+## Testing 
+### How do you run tests?
+#### pytest
+### Test Notes:
+
+![Animal Shelter](../assets/Animal%20shelter%20enqueue.png)
+![Animal Shelter](../assets//Animal%20shelter%20Dequeue.png)
