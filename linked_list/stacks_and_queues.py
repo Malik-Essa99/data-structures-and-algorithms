@@ -113,8 +113,37 @@ class PseudoQueue:
                 self.dequeue_from_stack.push(self.enqueue_to_stack.pop())
         return self.dequeue_from_stack.pop()
 
+class AnimalShelter:
+    def __init__(self):
+        self.dogs = Queue()
+        self.cats = Queue()
+    
+    def enqueue(self,animal):
+        if animal["species"] == "dog":
+            self.dogs.enqueue(animal["name"])
+        elif animal["species"] == "cat":
+            self.cats.enqueue(animal["name"])
+        else:
+            raise ValueError("Shelter is only for cats or dogs") 
+
+    def dequeue(self,pref = None):
+        if pref == "dog":
+            return self.dogs.dequeue()
+        elif pref == "cat":
+            return self.cats.dequeue()
+        else:
+            return pref
+
+
 if __name__ == "__main__":
     pass
+
+    # shelter = AnimalShelter()
+    # shelter.enqueue({"name":"Rex","species":"dog"})
+    # shelter.enqueue({"name":"Suzie","species":"cat"})
+    # shelter.enqueue({"name":"Sherry","species":"cat"})
+    # print(shelter.dequeue("dog"))
+    # print(shelter.dequeue("cat"))
     # new_queue = PseudoQueue()
     # new_queue.enqueue_to_stack("Hello")
     # print(new_queue.enqueue_to_stack.top.value)

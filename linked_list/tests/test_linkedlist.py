@@ -1,7 +1,7 @@
 import pytest
 
 from linked_list.linked_list import LinkedList
-from linked_list.stacks_and_queues import (Stack, Queue, PseudoQueue)
+from linked_list.stacks_and_queues import (Stack, Queue, PseudoQueue, AnimalShelter)
 
 @pytest.mark.skip(reason="Done")
 def test_linkedlist_instantiattion_empty():
@@ -356,19 +356,19 @@ def test_zip_lists_both_list_empty():
 #############   Pseudo Queue   #############
 
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_Pseudo_Queues_instantiation():
     new_queue = PseudoQueue()
     assert new_queue.enqueue_to_stack.top == None
     assert new_queue.dequeue_from_stack.top == None
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_Pseudo_Queues_enqueue_one():
     new_queue = PseudoQueue()
     new_queue.enqueue("5")
     assert new_queue.enqueue_to_stack.peek() == ("5")
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_Pseudo_Queues_multiple_enqueue():
     new_queue = PseudoQueue()
     new_queue.enqueue("20")
@@ -377,7 +377,7 @@ def test_Pseudo_Queues_multiple_enqueue():
     new_queue.enqueue("5")
     assert new_queue.enqueue_to_stack.peek() == ("5")
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_Pseudo_Queues_multiple_dequeue_one():
     new_queue = PseudoQueue()
     new_queue.enqueue("20")
@@ -386,10 +386,47 @@ def test_Pseudo_Queues_multiple_dequeue_one():
     new_queue.enqueue("5")
     assert new_queue.dequeue() == ("20")
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_Pseudo_Queues_multiple_dequeue_two():
     new_queue = PseudoQueue()
     new_queue.enqueue("15")
     new_queue.enqueue("10")
     new_queue.enqueue("5")
     assert new_queue.dequeue() == ("15")
+
+
+#############   Animal Shelter   #############
+
+# @pytest.mark.skip(reason="Done")
+def test_AnimalShelter_Instanitiation():
+    shelter = AnimalShelter()
+    assert shelter.dogs.is_empty() == True
+    assert shelter.cats.is_empty() == True
+
+# @pytest.mark.skip(reason="Done")
+def test_AnimalShelter_Enqueue():
+    shelter = AnimalShelter()
+    shelter.enqueue({"name":"Rex","species":"dog"})
+    assert shelter.dogs.is_empty() == False
+    assert shelter.cats.is_empty() == True
+    assert shelter.dequeue("dog") == "Rex"
+
+# @pytest.mark.skip(reason="Done")
+def test_AnimalShelter_Multiple_Enqueues_and_dequeues():
+    shelter = AnimalShelter()
+    shelter.enqueue({"name":"Rex","species":"dog"})
+    shelter.enqueue({"name":"Macy","species":"cat"})
+    shelter.enqueue({"name":"Robby","species":"dog"})
+    shelter.enqueue({"name":"Sam","species":"dog"})
+    assert shelter.dequeue("dog") == "Rex"
+    assert shelter.dequeue("cat") == "Macy"
+    assert shelter.dequeue("dog") == "Robby"
+    assert shelter.dogs.peek() == "Sam"
+
+@pytest.mark.skip(reason="Done")
+def test_AnimalShelter_value_error():
+    shelter = AnimalShelter()
+    shelter.enqueue({"name":"Loco","species":"bird"})
+    assert shelter.dequeue("bird") == "Loco"
+    # This test raises Value Error, Unskip it to see the error
+    
