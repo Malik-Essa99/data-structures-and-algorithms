@@ -1,0 +1,11 @@
+## validate brackets.
+### project: validate brackets.
+### Author: Malik Al Hudrub
+## How to initialize/run your application:
+### python linked_list/stacks_and_queues.py
+## Testing 
+### How do you run tests?
+#### pytest
+### Test Notes:
+
+![validate brackets](../assets//validate_brackets_CC13.png)

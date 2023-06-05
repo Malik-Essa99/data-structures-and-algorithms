@@ -1,7 +1,7 @@
 import pytest
 
 from linked_list.linked_list import LinkedList
-from linked_list.stacks_and_queues import (Stack, Queue, PseudoQueue, AnimalShelter)
+from linked_list.stacks_and_queues import (Stack, Queue, PseudoQueue, AnimalShelter, validate_brackets)
 
 @pytest.mark.skip(reason="Done")
 def test_linkedlist_instantiattion_empty():
@@ -397,13 +397,13 @@ def test_Pseudo_Queues_multiple_dequeue_two():
 
 #############   Animal Shelter   #############
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_AnimalShelter_Instanitiation():
     shelter = AnimalShelter()
     assert shelter.dogs.is_empty() == True
     assert shelter.cats.is_empty() == True
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_AnimalShelter_Enqueue():
     shelter = AnimalShelter()
     shelter.enqueue({"name":"Rex","species":"dog"})
@@ -411,7 +411,7 @@ def test_AnimalShelter_Enqueue():
     assert shelter.cats.is_empty() == True
     assert shelter.dequeue("dog") == "Rex"
 
-# @pytest.mark.skip(reason="Done")
+@pytest.mark.skip(reason="Done")
 def test_AnimalShelter_Multiple_Enqueues_and_dequeues():
     shelter = AnimalShelter()
     shelter.enqueue({"name":"Rex","species":"dog"})
@@ -429,4 +429,28 @@ def test_AnimalShelter_value_error():
     shelter.enqueue({"name":"Loco","species":"bird"})
     assert shelter.dequeue("bird") == "Loco"
     # This test raises Value Error, Unskip it to see the error
-    
+
+# @pytest.mark.skip(reason="Done")
+def test_validate_brackets_one():
+    str1 = "{}"
+    str2 = "{}(){}"
+    str3 = "()[[Extra Characters]]"
+    str4 = "(){}[[]]"
+    str5 = "{}{Code}[Fellows](())"
+    str6 = "[({}]"
+    str7 = "(]("
+    str8 = "{(})"
+    str9 = "{"
+    str10 = "}"
+    str11 = "{)"
+    assert validate_brackets(str1) == True
+    assert validate_brackets(str2) == True
+    assert validate_brackets(str3) == True
+    assert validate_brackets(str4) == True
+    assert validate_brackets(str5) == True
+    assert validate_brackets(str6) == False
+    assert validate_brackets(str7) == False
+    assert validate_brackets(str8) == False
+    assert validate_brackets(str9) == False
+    assert validate_brackets(str10) == False
+    assert validate_brackets(str11) == False
