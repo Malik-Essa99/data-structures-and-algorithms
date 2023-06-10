@@ -33,8 +33,8 @@ class Stack:
     def peek(self):
         try:
             if self.top is not None:
-                temp = str(self.top.value)
-                return temp
+                return self.top.value
+                
             else:
                 raise ValueError
 
@@ -100,7 +100,6 @@ class Queue:
         else:
             return False
 
-
 class PseudoQueue:
     def __init__(self):
         self.enqueue_to_stack = Stack()
@@ -114,7 +113,6 @@ class PseudoQueue:
             while not self.enqueue_to_stack.is_empty():
                 self.dequeue_from_stack.push(self.enqueue_to_stack.pop())
         return self.dequeue_from_stack.pop()
-
 
 class AnimalShelter:
     def __init__(self):
@@ -136,7 +134,6 @@ class AnimalShelter:
             return self.cats.dequeue()
         else:
             return pref
-
 
 def validate_brackets(test_str):
     """ This function will first it will first create a dict and save opening and closing
@@ -167,29 +164,30 @@ def validate_brackets(test_str):
         return False
 
 if __name__ == "__main__":
-    str1 = "{}"
-    str2 = "{}(){}"
-    str3 = "()[[Extra Characters]]"
-    str4 = "(){}[[]]"
-    str5 = "{}{Code}[Fellows](())"
-    str6 = "[({}]"
-    str7 = "(]("
-    str8 = "{(})"
-    str9 = "{"
-    str10 = "}"
-    str11 = "{)"
+    pass
+    # str1 = "{}"
+    # str2 = "{}(){}"
+    # str3 = "()[[Extra Characters]]"
+    # str4 = "(){}[[]]"
+    # str5 = "{}{Code}[Fellows](())"
+    # str6 = "[({}]"
+    # str7 = "(]("
+    # str8 = "{(})"
+    # str9 = "{"
+    # str10 = "}"
+    # str11 = "{)"
 
-    print(validate_brackets(str1))
-    print(validate_brackets(str2))
-    print(validate_brackets(str3))
-    print(validate_brackets(str4))
-    print(validate_brackets(str5))
-    print(validate_brackets(str6))
-    print(validate_brackets(str7))
-    print(validate_brackets(str8))
-    print(validate_brackets(str9))
-    print(validate_brackets(str10))
-    print(validate_brackets(str11))
+    # print(validate_brackets(str1))
+    # print(validate_brackets(str2))
+    # print(validate_brackets(str3))
+    # print(validate_brackets(str4))
+    # print(validate_brackets(str5))
+    # print(validate_brackets(str6))
+    # print(validate_brackets(str7))
+    # print(validate_brackets(str8))
+    # print(validate_brackets(str9))
+    # print(validate_brackets(str10))
+    # print(validate_brackets(str11))
 
     # shelter = AnimalShelter()
     # shelter.enqueue({"name":"Rex","species":"dog"})
