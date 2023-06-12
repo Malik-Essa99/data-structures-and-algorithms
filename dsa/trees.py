@@ -1,4 +1,4 @@
-from stacks_and_queues import Queue
+from stacks_and_queues import (Queue, Stack)
 
 class Node:
     def __init__(self, value, _next=None):
@@ -79,6 +79,64 @@ class Tree:
 
         _walk(self.root)
         return output
+    
+    def find_max(self):
+        ### Recursive ### Using pre order ###
+        '''
+        this function creates a helper(_walk), and an empty values array,
+        then it will call the _walk function and pass the root as args,
+        there are two base cases(if there are any left or right for a given root)
+        it will add each Tree node value to the values list and then create max,
+        Iterate through values and check if they are greater than the max,
+        and finally return max
+        '''
+        if self.root is None:
+            raise ValueError("Tree is empty")
+        
+        values = []
+        def _walk(root):
+            values.append(root.value)
+
+            if root.left:
+                _walk(root.left)
+            if root.right:
+                _walk(root.right)
+
+        _walk(self.root)
+        
+        max = values[0]
+        if values:
+            for num in values:
+                if num > max:
+                    max = num
+        return max
+    
+        ### Iterative ### Using Breadth First ###
+
+        # if self.root is None:
+        #     raise ValueError("Tree is empty")
+        
+        # values = []
+        # stack = Stack()
+        # stack.push(self.root)
+
+
+        # while not stack.is_empty():
+        #     top = stack.pop()
+        #     values.append(top.value)
+
+        #     if top.left is not None:
+        #         stack.push(top.left)
+
+        #     if top.right is not None:
+        #         stack.push(top.right)
+
+        # if values[0] is not None:       
+        #     max = values[0]
+        #     for i in values:
+        #         if i > max:
+        #             max = i
+        # return max
 
 
 class BinarySearch(Tree):
@@ -122,23 +180,26 @@ class BinarySearch(Tree):
                     root.right = Tnode(value)
                     return
                 root = root.right
-
+            
 if __name__ == "__main__":
     tree = Tree()
-    tree.root = Tnode("A")
-    tree.root.left = Tnode("B")
-    tree.root.right = Tnode("C")
-    tree.root.left.left = Tnode("D")
-    tree.root.left.right = Tnode("E")
-    tree.root.right.left = Tnode("F")
+    # tree.root = Tnode("A")
+    # tree.root.left = Tnode("B")
+    # tree.root.right = Tnode("C")
+    # tree.root.left.left = Tnode("D")
+    # tree.root.left.right = Tnode("E")
+    # tree.root.right.left = Tnode("F")
 
-    # tree.root = Tnode(10)
-    # tree.root.left = Tnode(20)
-    # tree.root.right = Tnode(50)
-    # tree.root.left.left = Tnode(30)
-    # tree.root.left.right = Tnode(40)
-    # tree.root.right = Tnode(50)
-    # tree.root.right.left = Tnode(60)
+    tree.root = Tnode(10)
+    tree.root.left = Tnode(20)
+    tree.root.right = Tnode(50)
+    tree.root.left.left = Tnode(30)
+    tree.root.left.right = Tnode(40)
+    tree.root.right = Tnode(55)
+    tree.root.right.left = Tnode(60)
+    tree.root.right.left.right = Tnode(70)
+
+    print(tree.find_max())
 
     # tree.root = Tnode(23)
     # tree.root.left = Tnode(8)
@@ -162,11 +223,11 @@ if __name__ == "__main__":
     # tree.add(28)
 
     # print(tree.breadth_first())
-    print(tree.pre_order())
-    print(" ")
-    print(tree.in_order())
-    print(" ")
-    print(tree.post_order())
+    # print(tree.pre_order())
+    # print(" ")
+    # print(tree.in_order())
+    # print(" ")
+    # print(tree.post_order())
     # tree.add("7")
     # print(tree.root.right.right.left.value)
     # print(tree.root.left.left.left.value)
