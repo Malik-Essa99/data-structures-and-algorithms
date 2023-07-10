@@ -5,7 +5,6 @@ class Node:
         self.value = value
         self.next = _next
 
-
 class Tnode:
     def __init__(self, value):
         self.value = value
@@ -138,7 +137,6 @@ class Tree:
         #             max = i
         # return max
 
-
 class BinarySearch(Tree):
     def contains(self, value):
         try:
@@ -180,9 +178,41 @@ class BinarySearch(Tree):
                     root.right = Tnode(value)
                     return
                 root = root.right
-            
+                
+def compare_trees(tree1, tree2):
+    '''Assuming we have access to queue class and its methods,
+    first we will create another function breadth_first(),
+    that traverses a tree and counts the number of leaves for
+    the passed tree, and called for both trees, and finally
+    compare the two leaves count and return boolean
+    '''
+    def breadth_first_compare(tree):
+        leaves = 0
+        queue = Queue()
+        queue.enqueue(tree.root)
+
+        while not queue.is_empty():
+            front = queue.dequeue()
+            if not front.left and not front.right:
+                leaves = leaves + 1
+            if front.left:
+                queue.enqueue(front.left)
+            if front.right:
+                queue.enqueue(front.right)
+        return leaves
+
+    tree_1_leaves = breadth_first_compare(tree1)
+    tree_2_leaves = breadth_first_compare(tree2)
+
+    if tree_1_leaves == tree_2_leaves:
+        return True
+    else:
+        return False
+
+
 if __name__ == "__main__":
     tree = Tree()
+    tree2 = Tree()
     # tree.root = Tnode("A")
     # tree.root.left = Tnode("B")
     # tree.root.right = Tnode("C")
@@ -195,11 +225,21 @@ if __name__ == "__main__":
     tree.root.right = Tnode(50)
     tree.root.left.left = Tnode(30)
     tree.root.left.right = Tnode(40)
-    tree.root.right = Tnode(55)
     tree.root.right.left = Tnode(60)
     tree.root.right.left.right = Tnode(70)
+    tree.root.right.left.left = Tnode(90)
+    tree.root.right.left.left.left = Tnode(100)
+    tree.root.right.left.left.left.right = Tnode(100)
 
-    print(tree.find_max())
+    tree2.root = Tnode(10)
+    tree2.root.left = Tnode(20)
+    tree2.root.right = Tnode(50)
+    tree2.root.left.left = Tnode(30)
+    tree2.root.left.right = Tnode(40)
+    tree2.root.right.left = Tnode(60)
+    # tree2.root.right.left.right = Tnode(70)
+    # print(tree.find_max())
+    print(compare_trees(tree,tree2))
 
     # tree.root = Tnode(23)
     # tree.root.left = Tnode(8)
