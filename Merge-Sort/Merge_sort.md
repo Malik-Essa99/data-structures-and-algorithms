@@ -1,7 +1,7 @@
 # Merge Sort
 ### Author: Malik Al Hudrub
 ### How to initialize/run your application:
-python data-structures-and-algorithms/Merge-Sort/Insertion_sort.py
+python data-structures-and-algorithms/Merge-Sort/Merge_sort.py
 
 ### Testing 
 ### How do you run tests?
@@ -11,55 +11,51 @@ python data-structures-and-algorithms/Merge-Sort/Insertion_sort.py
 ### Algorithm:
 
 ``` 
-ALGORITHM Mergesort(arr)
-    DECLARE n <-- arr.length
-
-    if n > 1
-      DECLARE mid <-- n/2
-      DECLARE left <-- arr[0...mid]
-      DECLARE right <-- arr[mid...n]
-      // sort the left side
-      Mergesort(left)
-      // sort the right side
-      Mergesort(right)
-      // merge the sorted left and right sides together
-      Merge(left, right, arr)
-
-ALGORITHM Merge(left, right, arr)
-    DECLARE i <-- 0
-    DECLARE j <-- 0
-    DECLARE k <-- 0
-
-    while i < left.length && j < right.length
-        if left[i] <= right[j]
-            arr[k] <-- left[i]
-            i <-- i + 1
-        else
-            arr[k] <-- right[j]
-            j <-- j + 1
-
-        k <-- k + 1
-
-    if i = left.length
-       set remaining entries in arr to remaining values in right
-    else
-       set remaining entries in arr to remaining values in left
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left = arr[:mid]
+        right = arr[mid:]
+        left = merge_sort(left)
+        right = merge_sort(right)
+        return merge(left, right)
+    return arr
+def merge(left, right):
+    merged = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
+        else:
+            merged.append(right[j])
+            j += 1
+    merged.extend(left[i:])
+    merged.extend(right[j:])
+    return merged
 ```
+
 ### Test cases visualization:
 
 Case 1:
-![one]()
-Case 2:
-![two]()
-Case 3:
-![three]()
-Case 4:
-![four]()
+------------------------
+![one](./assets/one.png)
 
+Case 2:
+------------------------
+![two](./assets/two.png)
+
+Case 3:
+------------------------
+
+![three](./assets/three.png)
+
+Case 4:
+------------------------
+
+![four](./assets/four.png)
 
 ### Efficency:
-Time: O()
-+ 
+Time: O(n log n) 
 
-Space: O()
-+ 
+Space: O(n)
