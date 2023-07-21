@@ -19,3 +19,4 @@
 |Code challenge 26  | [Link 26](./Insertion-Sort/Insertion_sort.md)          |
 |Code challenge 27  | [Link 27](./Merge-Sort/Merge_sort.md)                  |
 |Code challenge 28  | [Link 28](./Sorting-Comparisons/sorting_comparisons.md)|
+|Code challenge 30  | [Link 30](./dsa/md_files/CC30.md)                      |
