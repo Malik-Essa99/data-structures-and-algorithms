@@ -3,7 +3,6 @@ class Node:
         self.value = value
         self.next = _next
 
-
 ############# LinkedList #############
 
 
@@ -87,7 +86,7 @@ class LinkedList:
             temp_lst = []
             current = self.head
             while current != None:
-                temp_lst.append(current.value)
+                temp_lst.insert(0,current.value)
                 current = current.next
             if k <= len(temp_lst):
                 return temp_lst[k]
@@ -96,12 +95,7 @@ class LinkedList:
         except ValueError as ve:
             print(ve)
             raise ValueError(f"Linked list has fewer than {k} elements.")
-        
-    ######################################################
-    ##################      Class09     ##################
-    ######################################################
 
-    
     @staticmethod
     def reverse_linkedlist(ll_1):
         current = ll_1.head
@@ -119,7 +113,6 @@ class LinkedList:
 
         return new_list
 
-    
     @staticmethod
     def zip_lists(ll_1,ll_2):
         try:
@@ -139,8 +132,75 @@ class LinkedList:
         except ValueError as ve:
             print(ve)
             raise ValueError("Both Lists are empty")
-            
 
+############## Practice ##############
+        
+    def delete_by_value(self,_value):
+        
+        if self.head is None:
+            raise ValueError("The linkedList is empty")
+        elif self.head.value == _value and self.head.next is None:
+            self.head = self.head.next
+        elif self.head.value == _value and self.head.next:
+            self.head = self.head.next
+        current = self.head
+        
+        while current is not None:
+            if current.next is None:
+                return
+            if current.next.value == _value:
+                current.next = current.next.next
+            current = current.next
+            
+    def delete_by_position(self,pos):
+        if self.head is None:
+            raise ValueError("The linkedList is empty")
+        elif pos == 0 and self.head.next:
+            self.head = self.head.next
+        elif pos == 0 and not self.head.next:
+            self.head = None
+        
+        count = 1
+        current = self.head
+        
+        while current is not None:
+            if current.next is None:
+                return
+            if count == pos:
+                current.next = current.next.next
+            current = current.next
+            count += 1
+            
+    def find_the_middle_node(self):
+        if self.head is None:
+            raise ValueError("The linkedList is empty")
+        lst = []
+        current = self.head
+        while current:
+            lst.append(current.value)
+            current = current.next
+        if len(lst)%2 == 0:
+            return lst[(int(len(lst)/2))-1]
+        return lst[(int(len(lst)/2))]
+
+############## Main ##############
+if __name__=="__main__":
+    ll = LinkedList()
+    ll.append("1")
+    ll.append("2")
+    ll.append("3")
+    ll.append("4")
+    ll.append("5")
+    ll.append("6")
+    ll.append("7")
+    ll.append("8")
+    # ll.delete_by_value("1")
+    # ll.delete_by_position(3)
+    print(ll.find_the_middle_node())
+    # print(ll.to_string())
+    
+    
+    
     # ll = LinkedList()
     # ll.insert("1")
     # ll.insert("2")
@@ -223,5 +283,3 @@ class LinkedList:
     # # print(ll2.to_string())
     # ll3 = LinkedList.zip_lists(ll1,ll2)
     # print(ll3.to_string())
-
-    

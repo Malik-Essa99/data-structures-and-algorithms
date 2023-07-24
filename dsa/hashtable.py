@@ -1,3 +1,4 @@
+import re
 class Node:
     def __init__(self, value, _next=None):
         self.value = value
@@ -27,7 +28,9 @@ class HashTable:
         #     code = code % 1024
 
         # return code
-        return (sum([ord(str(key)) for char in key]) * 283 % 1024)
+        
+        # return (sum([ord(str(key)) for char in key]) * 283 % 1024) # this function only hashes if the string had 1 char
+        return sum([ord(char) for char in key]) * 283 % self.__size
     
     def set(self,key,value):
         index = self.__hash(key)
@@ -65,3 +68,26 @@ class HashTable:
     
     def keys(self):
         return self.keys
+
+def repeated_word(_str):
+    clean_str = re.sub(r"[^a-zA-Z\s]", "", _str)
+    words = clean_str.lower().split(" ")
+    hash = HashTable()
+    
+    for word in words:
+        # Check if the word already exists in the hash table
+        if hash.has(word):
+            return word
+        else:
+            # If the word doesn't exist, add it to the hash table
+            hash.set(word, "added")
+    return ("there are no duplicates")
+
+if __name__=="__main__":
+    # hash = HashTable()
+    string = "Once upon a time, there was a brave princess who..."
+    string2 = "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only..."
+    string3 = "It was a queer, sultry summer, the summer they electrocuted the Rosenbergs, and I didn’t know what I was doing in New York..."
+    print(repeated_word(string))
+    print(repeated_word(string2))
+    print(repeated_word(string3))
