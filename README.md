@@ -21,3 +21,4 @@
 |Code challenge 28  | [Link 28](./Sorting-Comparisons/sorting_comparisons.md)|
 |Code challenge 30  | [Link 30](./dsa/md_files/CC30.md)                      |
 |Code challenge 31  | [Link 31](./dsa/md_files/CC31.md)                      |
+|Code challenge 32  | [Link 32](./tree_intersection/tree_intersection.md)    |
