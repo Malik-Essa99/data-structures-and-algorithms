@@ -75,19 +75,87 @@ def repeated_word(_str):
     hash = HashTable()
     
     for word in words:
-        # Check if the word already exists in the hash table
         if hash.has(word):
             return word
         else:
-            # If the word doesn't exist, add it to the hash table
             hash.set(word, "added")
     return ("there are no duplicates")
 
+def left_joins(hashmap1,hashmap2):
+    if not hashmap2.keys and not hashmap1.keys:
+        raise "Both hashtables are empty"
+    
+    keys1 = hashmap1.keys
+    keys2 = hashmap2.keys
+    all_keys = []
+    
+    for key in keys1:
+        if key not in all_keys:
+            all_keys.append(key)
+            
+    for key in keys2:       
+        if key not in all_keys:
+            all_keys.append(key)
+    
+    result = []
+    for key in all_keys:
+        set = []
+        set.append(key)
+        if hashmap1.has(key):
+            set.append(hashmap1.get(key))
+        else:
+            set.append(None)
+
+        if  hashmap2.has(key):
+            set.append(hashmap2.get(key))
+        else:
+            set.append(None)
+            
+        result.append(set)
+    return result
+
 if __name__=="__main__":
+    
+    ################### Repeated Word  ###################
+    
     # hash = HashTable()
-    string = "Once upon a time, there was a brave princess who..."
-    string2 = "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only..."
-    string3 = "It was a queer, sultry summer, the summer they electrocuted the Rosenbergs, and I didn’t know what I was doing in New York..."
-    print(repeated_word(string))
-    print(repeated_word(string2))
-    print(repeated_word(string3))
+    # string = "Once upon a time, there was a brave princess who..."
+    # string2 = "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only..."
+    # string3 = "It was a queer, sultry summer, the summer they electrocuted the Rosenbergs, and I didn’t know what I was doing in New York..."
+    # print(repeated_word(string))
+    # print(repeated_word(string2))
+    # print(repeated_word(string3))
+    
+    ################### Left Joins ###################
+    
+    
+    
+    hash_synonym  = HashTable()
+    hash_antonyms = HashTable()
+    # arr = {
+    # "font": {"synonym": "enamored", "antonyms": "averse"},
+    # "wrath": {"synonym": "anger", "antonyms": "delight"},
+    # "diligent": {"synonym": "employed", "antonyms": "idle"},
+    # "outfit": {"synonym": "garb", "antonyms": None},
+    # "guide": {"synonym": "usher", "antonyms": "follow"}
+    # }
+    # for key,value in arr.items():
+    #     hash_synonym.set(key,value["synonym"])
+    #     hash_antonyms.set(key,value["antonyms"])
+
+    hash_synonym.set("diligent","employed")
+    hash_antonyms.set("diligent","idle")
+    
+    hash_synonym.set("fond","enamored")
+    hash_antonyms.set("fond","averse")
+    
+    hash_synonym.set("guide","usher")
+    hash_antonyms.set("guide","follow")
+    
+    hash_synonym.set("wrath","garb")
+    hash_antonyms.set("wrath","jam")
+    
+    hash_synonym.set("outfit","employed")
+    hash_antonyms.set("outfit","idle")
+
+    print(left_joins(hash_synonym,hash_antonyms))

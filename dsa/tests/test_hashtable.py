@@ -1,5 +1,5 @@
 import pytest 
-from dsa.hashtable import HashTable,repeated_word
+from dsa.hashtable import HashTable,repeated_word,left_joins
 
 @pytest.mark.skip(reason="Done")
 def test_hash_method():
@@ -66,3 +66,52 @@ def test_collision_handling():
     assert repeated_word(string) == "a"
     assert repeated_word(string2) == "it"
     assert repeated_word(string3) == "summer"
+    
+    
+################ Challenge 33 ################
+
+@pytest.mark.skip(reason="Raises an exception if both hashtables are empty")
+def test_both_hashtables_empty():
+    hash_synonym  = HashTable()
+    hash_antonyms = HashTable()
+    assert left_joins(hash_synonym,hash_antonyms) == None
+    
+# @pytest.mark.skip(reason="Done")
+def test_function_returns_key_synonym_and_antonyms():
+    hash_synonym  = HashTable()
+    hash_antonyms = HashTable()
+    
+    hash_synonym.set("diligent","employed")
+    hash_antonyms.set("diligent","idle")
+    
+    hash_synonym.set("fond","enamored")
+    hash_antonyms.set("fond","averse")
+    
+    hash_synonym.set("guide","usher")
+    hash_antonyms.set("guide","follow")
+    
+    hash_synonym.set("wrath","garb")
+    hash_antonyms.set("wrath","jam")
+    
+    hash_synonym.set("outfit","employed")
+    hash_antonyms.set("outfit","idle")
+    
+    assert left_joins(hash_synonym,hash_antonyms) == [['diligent', 'employed', 'idle'], ['fond', 'enamored', 'averse'], ['guide', 'usher', 'follow'], ['wrath', 'garb', 'jam'], ['outfit', 'employed', 'idle']]
+    
+# @pytest.mark.skip(reason="Done")
+def test_function_returns_None_values_for_none_existant_fileds():
+    hash_synonym  = HashTable()
+    hash_antonyms = HashTable()
+    
+    hash_synonym.set("diligent","employed")
+    hash_antonyms.set("diligent","idle")
+    
+    hash_synonym.set("fond","enamored")
+    # hash_antonyms.set("fond","averse") 
+    
+    # These lines are commented to create a situation where a hashtable does'nt have the value
+    
+    # hash_synonym.set("guide","usher")
+    hash_antonyms.set("guide","follow")
+    
+    assert left_joins(hash_synonym,hash_antonyms) == [['diligent', 'employed', 'idle'], ['fond', 'enamored', None], ['guide', None, 'follow']]
