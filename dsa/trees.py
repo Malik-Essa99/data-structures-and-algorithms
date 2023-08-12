@@ -66,7 +66,7 @@ class Tree:
 
     def post_order(self):
         output = []
-
+        
         def _walk(root):
             if root.left:
                 _walk(root.left)
@@ -157,7 +157,7 @@ class BinarySearch(Tree):
             raise ValueError("Value must be a number!")
         
     def add(self,value):
-
+        
         if self.contains(value):
             raise ValueError("The value is already in the Tree!")
         
@@ -178,7 +178,7 @@ class BinarySearch(Tree):
                     root.right = Tnode(value)
                     return
                 root = root.right
-                
+        
 def compare_trees(tree1, tree2):
     '''Assuming we have access to queue class and its methods,
     first we will create another function breadth_first(),
@@ -203,16 +203,50 @@ def compare_trees(tree1, tree2):
 
     tree_1_leaves = breadth_first_compare(tree1)
     tree_2_leaves = breadth_first_compare(tree2)
-
+    
     if tree_1_leaves == tree_2_leaves:
         return True
     else:
         return False
+    
+# def binary_tree_height(tree):
+#     root = tree.root
+#     if not root:
+#         raise ValueError("tree is empty")
+    
+#     def _helper(root):
+#         if root.left or root.right:
+#             return 1 + (_helper(root.left) +( _helper(root.right)))
+#         return
+#         # if root.left:
+#         #     _helper(root.left)
+#         # if root.right:
+#         #     _helper(root.right)
 
+#     return _helper(root)
+
+def binary_tree_height(tree):
+    root = tree.root
+    if not root:
+        return 0
+
+    def _helper(node):
+        if not node:
+            return 0
+
+        left_height = _helper(node.left)
+        right_height = _helper(node.right)
+
+        if left_height > right_height:
+            return left_height + 1
+        else:
+            return right_height + 1
+        
+    return _helper(root) + 1
 
 if __name__ == "__main__":
-    tree = Tree()
-    tree2 = Tree()
+    # tree = Tree()
+    # tree2 = Tree()
     # tree.root = Tnode("A")
     # tree.root.left = Tnode("B")
     # tree.root.right = Tnode("C")
@@ -220,26 +254,26 @@ if __name__ == "__main__":
     # tree.root.left.right = Tnode("E")
     # tree.root.right.left = Tnode("F")
 
-    tree.root = Tnode(10)
-    tree.root.left = Tnode(20)
-    tree.root.right = Tnode(50)
-    tree.root.left.left = Tnode(30)
-    tree.root.left.right = Tnode(40)
-    tree.root.right.left = Tnode(60)
-    tree.root.right.left.right = Tnode(70)
-    tree.root.right.left.left = Tnode(90)
-    tree.root.right.left.left.left = Tnode(100)
-    tree.root.right.left.left.left.right = Tnode(100)
+    # tree.root = Tnode(10)
+    # tree.root.left = Tnode(20)
+    # tree.root.right = Tnode(50)
+    # tree.root.left.left = Tnode(30)
+    # tree.root.left.right = Tnode(40)
+    # tree.root.right.left = Tnode(60)
+    # tree.root.right.left.right = Tnode(70)
+    # tree.root.right.left.left = Tnode(90)
+    # tree.root.right.left.left.left = Tnode(100)
+    # tree.root.right.left.left.left.right = Tnode(100)
 
-    tree2.root = Tnode(10)
-    tree2.root.left = Tnode(20)
-    tree2.root.right = Tnode(50)
-    tree2.root.left.left = Tnode(30)
-    tree2.root.left.right = Tnode(40)
-    tree2.root.right.left = Tnode(60)
+    # tree2.root = Tnode(10)
+    # tree2.root.left = Tnode(20)
+    # tree2.root.right = Tnode(50)
+    # tree2.root.left.left = Tnode(30)
+    # tree2.root.left.right = Tnode(40)
+    # tree2.root.right.left = Tnode(60)
     # tree2.root.right.left.right = Tnode(70)
     # print(tree.find_max())
-    print(compare_trees(tree,tree2))
+    # print(compare_trees(tree,tree2))
 
     # tree.root = Tnode(23)
     # tree.root.left = Tnode(8)
@@ -273,3 +307,34 @@ if __name__ == "__main__":
     # print(tree.root.left.left.left.value)
     # print(tree.root.left.right.left.left.value)
     # print(BinarySearch.contains(tree,0))
+
+##################### Tree practice #####################
+
+    tree = Tree()
+    tree2 = Tree()
+    
+    tree.root = Tnode("150")
+    tree.root.left = Tnode("100")
+    tree.root.right = Tnode("250")
+    tree.root.left.left = Tnode("75")
+    tree.root.left.right = Tnode("160")
+    tree.root.left.right.left = Tnode("125")
+    tree.root.left.right.right = Tnode("175")
+    tree.root.right.left = Tnode("200")
+    tree.root.right.right = Tnode("350")
+    tree.root.right.right.left = Tnode("300")
+    tree.root.right.right.right = Tnode("500")
+    
+    # tree2.root = Tnode("42")
+    # tree2.root.left = Tnode("100")
+    # tree2.root.right = Tnode("600")
+    # tree2.root.left.left = Tnode("15")
+    # tree2.root.left.right = Tnode("160")
+    # tree2.root.left.right.left = Tnode("125")
+    # tree2.root.left.right.right = Tnode("175")
+    # tree2.root.right.left = Tnode("200")
+    # tree2.root.right.right = Tnode("350")
+    # tree2.root.right.right.left = Tnode("4")
+    # tree2.root.right.right.right = Tnode("500")
+    
+    print(binary_tree_height(tree))

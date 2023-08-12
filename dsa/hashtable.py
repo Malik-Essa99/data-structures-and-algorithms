@@ -31,7 +31,7 @@ class HashTable:
         
         # return (sum([ord(str(key)) for char in key]) * 283 % 1024) # this function only hashes if the string had 1 char
         return sum([ord(char) for char in key]) * 283 % self.__size
-    
+
     def set(self,key,value):
         index = self.__hash(key)
         if self.__buckets[index] is None:
@@ -86,14 +86,9 @@ def left_joins(hashmap1,hashmap2):
         raise "Both hashtables are empty"
     
     keys1 = hashmap1.keys
-    keys2 = hashmap2.keys
     all_keys = []
     
     for key in keys1:
-        if key not in all_keys:
-            all_keys.append(key)
-            
-    for key in keys2:       
         if key not in all_keys:
             all_keys.append(key)
     
@@ -152,10 +147,10 @@ if __name__=="__main__":
     hash_synonym.set("guide","usher")
     hash_antonyms.set("guide","follow")
     
-    hash_synonym.set("wrath","garb")
-    hash_antonyms.set("wrath","jam")
+    hash_synonym.set("outfit","garb")
+    hash_antonyms.set("flow","jam")
     
-    hash_synonym.set("outfit","employed")
-    hash_antonyms.set("outfit","idle")
-
+    hash_synonym.set("wrath","anger")
+    hash_antonyms.set("wrath","delight")
+    
     print(left_joins(hash_synonym,hash_antonyms))
