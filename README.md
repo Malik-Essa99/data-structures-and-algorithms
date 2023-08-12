@@ -22,4 +22,5 @@
 |Code challenge 30  | [Link 30](./dsa/md_files/CC30.md)                      |
 |Code challenge 31  | [Link 31](./dsa/md_files/CC31.md)                      |
 |Code challenge 32  | [Link 32](./tree_intersection/tree_intersection.md)    |
-|Code challenge 33  | [Link 33](./dsa/md_files/CC33.md)    |
+|Code challenge 33  | [Link 33](./dsa/md_files/CC33.md)                      |
+|Code challenge 35  | [Link 35](./dsa/md_files/CC35.md)                      |
