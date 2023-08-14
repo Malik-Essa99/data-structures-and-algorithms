@@ -56,3 +56,8 @@ def test_single_vertex_edge():
     neighbors = graph.get_neighbors(v1)
     assert len(neighbors) == 1  
     assert neighbors[0].vertix == v1
+
+
+######################### buisness trip #########################
+#                       still wokring on it                     #
+######################### buisness trip #########################

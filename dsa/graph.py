@@ -94,7 +94,18 @@ class Graph:
                     visted.add(neighbor)
 
         return result
-        
+    
+    def business_trip(graph,arr):
+        '''
+        The function is not complete, still working on it...
+        args: graph, array
+        returns cost if trip is possible
+        '''
+        for city in arr:
+            pass
+
+
+
 if __name__ == "__main__":
     g = Graph()
     a = g.add_vertix('A')
