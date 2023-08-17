@@ -36,7 +36,6 @@ class Graph:
       self.__adj_list[vertix] = []
       return vertix
 
-
     def add_edge(self, start_vertix, end_vertix, weight=0):
         if start_vertix not in self.__adj_list:
             raise KeyError("Start vertex is not found")
@@ -49,7 +48,7 @@ class Graph:
 
     def get_vertices(self):
       return self.__adj_list.keys()
-  
+    
     def size(self):
       return len(self.__adj_list)
   
@@ -72,6 +71,25 @@ class Graph:
                 if neighbor not in visted:
                     q.enqueue(neighbor)
                     visted.add(neighbor)
+        return result
+    
+    def depth_first(self, start_vertex):
+        result = []
+        visited = set()
+        stack = [start_vertex]
+        visited.add(start_vertex)
+
+        while len(stack):
+            current_vertex = stack.pop()
+            result.append(current_vertex.value)
+            neighbors = self.get_neighbors(current_vertex)
+
+            for edge in reversed(neighbors):
+                neighbor = edge.vertix
+                if neighbor not in visited:
+                    stack.append(neighbor)
+                    visited.add(neighbor)
+
         return result
 
 def business_trip(graph,cities):
@@ -111,41 +129,56 @@ def business_trip(graph,cities):
     return total_cost
 
 if __name__ == "__main__":
-    g = Graph()
-    # a = g.add_vertix('A')
-    # b = g.add_vertix('B')
-    # e = g.add_vertix('E')
-    # c = g.add_vertix('C')
-    # d = g.add_vertix('D')
+    graph = Graph()
+    a = graph.add_vertix('A')
+    b = graph.add_vertix('B')
+    e = graph.add_vertix('E')
+    c = graph.add_vertix('C')
+    d = graph.add_vertix('D')
+    e = graph.add_vertix('E')
+    f = graph.add_vertix('F')
+    g = graph.add_vertix('G')
+    h = graph.add_vertix('H')
 
-    # g.add_edge(a,b)
-    # g.add_edge(a,c)
-    # g.add_edge(b,d)
-    # g.add_edge(b,e)
-    # g.add_edge(e,d)
-    # g.add_edge(e,c)
+    graph.add_edge(a,b)
+    graph.add_edge(a,d)
     
-    Pandora = g.add_vertix('Pandora')
-    Metroville = g.add_vertix('Metroville')
-    Arendelle = g.add_vertix('Arendelle')
-    Naboo = g.add_vertix('Naboo')
-    Monstropolis = g.add_vertix('Monstropolis')
-    Narnia = g.add_vertix('Narnia')
+    graph.add_edge(b,d)
+    graph.add_edge(b,c)
     
-    g.add_edge(Metroville,Pandora,82)
-    g.add_edge(Metroville,Arendelle,99)
-    g.add_edge(Metroville,Narnia,37)
-    g.add_edge(Metroville,Naboo,26)
-    g.add_edge(Metroville,Monstropolis,105)
-    g.add_edge(Pandora,Arendelle,150)
-    g.add_edge(Arendelle,Monstropolis,42)
-    g.add_edge(Naboo,Monstropolis,73)
-    g.add_edge(Narnia,Naboo,250)
+    graph.add_edge(d,e)
+    graph.add_edge(d,h)
+    graph.add_edge(d,f)
+    
+    graph.add_edge(f,h)
+    graph.add_edge(c,g)
+    
+    # Pandora = g.add_vertix('Pandora')
+    # Metroville = g.add_vertix('Metroville')
+    # Arendelle = g.add_vertix('Arendelle')
+    # Naboo = g.add_vertix('Naboo')
+    # Monstropolis = g.add_vertix('Monstropolis')
+    # Narnia = g.add_vertix('Narnia')
+    
+    # g.add_edge(Metroville,Pandora,82)
+    # g.add_edge(Metroville,Arendelle,99)
+    # g.add_edge(Metroville,Narnia,37)
+    # g.add_edge(Metroville,Naboo,26)
+    # g.add_edge(Metroville,Monstropolis,105)
+    # g.add_edge(Pandora,Arendelle,150)
+    # g.add_edge(Arendelle,Monstropolis,42)
+    # g.add_edge(Naboo,Monstropolis,73)
+    # g.add_edge(Narnia,Naboo,250)
+    
     
     # print(g.breadth_first(Pandora))
     
-    # print(g.breadth_first(a))
-    print(business_trip(g,["Narnia", "Arendelle", "Naboo"]))
+    # print(g.breadth_first(Pandora))
+    print(graph.depth_first(a))
+    # print(graph.breadth_first(a))
+
+    # print(business_trip(g,["Narnia", "Arendelle", "Naboo"]))
+    # print(business_trip(g,["Narnia", "Arendelle", "Naboo"]))
 
     
     

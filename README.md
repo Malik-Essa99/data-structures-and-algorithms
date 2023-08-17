@@ -25,3 +25,4 @@
 |Code challenge 33  | [Link 33](./dsa/md_files/CC33.md)                      |
 |Code challenge 35  | [Link 35](./dsa/md_files/CC35.md)                      |
 |Code challenge 37  | [Link 37](./dsa/md_files/CC37.md)                      |
+|Code challenge 38  | [Link 38](./dsa/md_files/CC38.md)                      |

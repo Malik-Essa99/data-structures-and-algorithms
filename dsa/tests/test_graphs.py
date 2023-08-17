@@ -65,8 +65,7 @@ def test_single_vertex_edge():
 
 ######################### buisness trip #########################
 
-# @pytest.mark.skip(reason="Done")
-
+@pytest.mark.skip(reason="Done")
 def test_cases():
     g = Graph()
     Pandora = g.add_vertix('Pandora')
@@ -90,3 +89,27 @@ def test_cases():
     assert business_trip(g,["Arendelle","Monstropolis", "Naboo"]) == 115
     assert business_trip(g,["Naboo", "Pandora"]) == None
     assert business_trip(g,["Narnia", "Arendelle", "Naboo"]) == None
+    
+def test_depth_first_traversal():
+    graph = Graph()
+    a = graph.add_vertix('A')
+    b = graph.add_vertix('B')
+    e = graph.add_vertix('E')
+    c = graph.add_vertix('C')
+    d = graph.add_vertix('D')
+    e = graph.add_vertix('E')
+    f = graph.add_vertix('F')
+    g = graph.add_vertix('G')
+    h = graph.add_vertix('H')
+
+    graph.add_edge(a,b)
+    graph.add_edge(a,d)
+    graph.add_edge(b,d)
+    graph.add_edge(b,c)
+    graph.add_edge(d,e)
+    graph.add_edge(d,h)
+    graph.add_edge(d,f)
+    graph.add_edge(f,h)
+    graph.add_edge(c,g)
+    
+    assert graph.depth_first(a) == ['A', 'B', 'C', 'G', 'D', 'E', 'H', 'F']
